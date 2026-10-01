@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Plate from '../../components/Plate.astro';
-import { collections } from '../../data/collections';
+import { collections, coverOf, objectBySlug, objectsIn } from '../../data/collections';
 ---
 <Base title="Collections">
   <section class="s s--light">
@@ -11,10 +11,11 @@ import { collections } from '../../data/collections';
   <section class="s s--light grid">
     {collections.map((c, i) => (
       <a href={`/collections/${c.slug}`} class:list={['card reveal', { 'card--offset': i % 2 }]}>
-        <Plate src={c.image} alt={c.title} label={`${c.title} — image to follow`} />
+        <Plate src={coverOf(c)} fit={objectBySlug(c.cover)?.fit} alt={c.title} sizes="(max-width: 700px) 100vw, 50vw" />
         <div class="card__meta">
           <span class="note muted">{c.number}</span>
           <span class="h2">{c.title}</span>
+          <span class="note muted">{objectsIn(c.slug).length} objects</span>
         </div>
         <p class="muted card__line">{c.line}</p>
       </a>

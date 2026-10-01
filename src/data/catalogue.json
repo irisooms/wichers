@@ -1,0 +1,467 @@
+[
+ {
+  "id": "001",
+  "slug": "broken-lady",
+  "title": "Broken Lady",
+  "collection": "scars",
+  "materials": "Porcelain, gold, chain",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "002",
+  "slug": "fracture",
+  "title": "Fracture",
+  "collection": "scars",
+  "materials": "Porcelain, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "003",
+  "slug": "grillig",
+  "title": "Grillig",
+  "collection": "scars",
+  "materials": "Cast metal, gilded",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "004",
+  "slug": "open-wound",
+  "title": "Open Wound",
+  "collection": "scars",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "005",
+  "slug": "shell-scar",
+  "title": "Shell Scar",
+  "collection": "scars",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "006",
+  "slug": "rest",
+  "title": "Rest",
+  "collection": "scars",
+  "materials": "Ceramic, bronze",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "007",
+  "slug": "botanical-wonder-sapling",
+  "title": "Botanical Wonder — Sapling",
+  "collection": "roots",
+  "materials": "Ceramic, glaze, lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "008",
+  "slug": "calyciphyta-longistipula",
+  "title": "Calyciphyta longistipula",
+  "collection": "roots",
+  "materials": "Ceramic, metallic glaze",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "009",
+  "slug": "rosicalyx-geminatus",
+  "title": "Rosicalyx geminatus",
+  "collection": "roots",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "010",
+  "slug": "botanical-wonder-octopus-bloom",
+  "title": "Botanical Wonder — Octopus Bloom",
+  "collection": "roots",
+  "materials": "Ceramic, glaze, lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "011",
+  "slug": "botanical-wonder-head",
+  "title": "Botanical Wonder — Head",
+  "collection": "roots",
+  "materials": "Ceramic, metallic glaze",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "012",
+  "slug": "root",
+  "title": "Root",
+  "collection": "roots",
+  "materials": "Porcelain, gilded",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "013",
+  "slug": "serpent-vessel",
+  "title": "Serpent Vessel",
+  "collection": "the-beautiful-monster",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "014",
+  "slug": "serpent-comb",
+  "title": "Serpent Comb",
+  "collection": "the-beautiful-monster",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "015",
+  "slug": "lotus-with-snakes",
+  "title": "Lotus with Snakes",
+  "collection": "the-beautiful-monster",
+  "materials": "Porcelain, cobalt, gold",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "016",
+  "slug": "vanitas-egg-with-snakes",
+  "title": "Vanitas — Egg with Snakes",
+  "collection": "the-beautiful-monster",
+  "materials": "Porcelain, cobalt, gold lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "017",
+  "slug": "mouths",
+  "title": "Mouths",
+  "collection": "the-beautiful-monster",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "018",
+  "slug": "heart-blooms",
+  "title": "Heart Blooms",
+  "collection": "the-beautiful-monster",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "019",
+  "slug": "vanitas-heart-with-lips",
+  "title": "Vanitas — Heart with Lips",
+  "collection": "the-beautiful-monster",
+  "materials": "Porcelain, cobalt, gold lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "020",
+  "slug": "creature",
+  "title": "Creature",
+  "collection": "the-beautiful-monster",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "021",
+  "slug": "specimen",
+  "title": "Specimen",
+  "collection": "the-beautiful-monster",
+  "materials": "Porcelain, cobalt, gold",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "022",
+  "slug": "botanical-wonder-y",
+  "title": "Botanical Wonder — Y",
+  "collection": "relics",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "023",
+  "slug": "botanical-wonder-yy",
+  "title": "Botanical Wonder — YY",
+  "collection": "relics",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "024",
+  "slug": "botanical-wonder-yyy",
+  "title": "Botanical Wonder — YYY",
+  "collection": "relics",
+  "materials": "Glazed ceramic",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "025",
+  "slug": "botanical-wonder-z",
+  "title": "Botanical Wonder — Z",
+  "collection": "relics",
+  "materials": "Ceramic, metallic glaze",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "026",
+  "slug": "coral",
+  "title": "Coral",
+  "collection": "relics",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "027",
+  "slug": "relic-ring",
+  "title": "Relic Ring",
+  "collection": "relics",
+  "materials": "Silver, porcelain",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "028",
+  "slug": "vanitas-body-with-flowers",
+  "title": "Vanitas — Body with Flowers",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, gold lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "029",
+  "slug": "vanitas-body-with-flowers-ii",
+  "title": "Vanitas — Body with Flowers II",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, gold lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "030",
+  "slug": "face-i",
+  "title": "Face I",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "031",
+  "slug": "face-ii",
+  "title": "Face II",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "032",
+  "slug": "face-iii",
+  "title": "Face III",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "033",
+  "slug": "face-iv",
+  "title": "Face IV",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "034",
+  "slug": "lips-i",
+  "title": "Lips I",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "035",
+  "slug": "lips-ii",
+  "title": "Lips II",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "036",
+  "slug": "lips-iii",
+  "title": "Lips III",
+  "collection": "body",
+  "materials": "Silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "037",
+  "slug": "lips-safety-pin",
+  "title": "Lips — Safety Pin",
+  "collection": "body",
+  "materials": "Porcelain, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "038",
+  "slug": "face-safety-pin",
+  "title": "Face — Safety Pin",
+  "collection": "body",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "039",
+  "slug": "vanitas-bird-on-egg",
+  "title": "Vanitas — Bird on Egg",
+  "collection": "memory-objects",
+  "materials": "Porcelain, cobalt, gold lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "040",
+  "slug": "vanitas-birds-on-nest",
+  "title": "Vanitas — Birds on Nest",
+  "collection": "memory-objects",
+  "materials": "Porcelain, cobalt, metallic glaze, gold",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "041",
+  "slug": "vanitas-bird-on-nest-with-small-eggs",
+  "title": "Vanitas — Bird on Nest with Small Eggs",
+  "collection": "memory-objects",
+  "materials": "Porcelain, cobalt, metallic glaze, gold",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "042",
+  "slug": "vanitas-birds",
+  "title": "Vanitas — Birds",
+  "collection": "memory-objects",
+  "materials": "Porcelain, cobalt, gold lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "043",
+  "slug": "vanitas-flowers",
+  "title": "Vanitas — Flowers",
+  "collection": "memory-objects",
+  "materials": "Porcelain, cobalt, gold lustre",
+  "views": [],
+  "fit": "contain"
+ },
+ {
+  "id": "044",
+  "slug": "icon-pearl-necklace",
+  "title": "Icon — Pearl Necklace",
+  "collection": "memory-objects",
+  "materials": "Porcelain, silver, pearls",
+  "views": [
+   {
+    "slug": "icon-pearl-necklace-2",
+    "fit": "cover"
+   }
+  ],
+  "fit": "cover"
+ },
+ {
+  "id": "045",
+  "slug": "icon-collar",
+  "title": "Icon — Collar",
+  "collection": "memory-objects",
+  "materials": "Porcelain, silver, velvet",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "046",
+  "slug": "medusa",
+  "title": "Medusa",
+  "collection": "memory-objects",
+  "materials": "Porcelain, gold, freshwater pearl",
+  "views": [
+   {
+    "slug": "medusa-2",
+    "fit": "cover"
+   }
+  ],
+  "fit": "cover"
+ },
+ {
+  "id": "047",
+  "slug": "freshwater-pearl",
+  "title": "Freshwater Pearl",
+  "collection": "memory-objects",
+  "materials": "Gilded metal, freshwater pearl",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "048",
+  "slug": "chain",
+  "title": "Chain",
+  "collection": "memory-objects",
+  "materials": "Porcelain, gold, pearls",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "049",
+  "slug": "blue-leaf",
+  "title": "Blue Leaf",
+  "collection": "memory-objects",
+  "materials": "Porcelain, cobalt, gold",
+  "views": [],
+  "fit": "cover"
+ },
+ {
+  "id": "050",
+  "slug": "memory-i",
+  "title": "Memory I",
+  "collection": "memory-objects",
+  "materials": "Porcelain, cobalt, silver",
+  "views": [
+   {
+    "slug": "memory-i-2",
+    "fit": "cover"
+   }
+  ],
+  "fit": "cover"
+ }
+]

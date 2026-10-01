@@ -1,40 +1,52 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Plate from '../../components/Plate.astro';
-import { objects, collectionOf } from '../../data/collections';
+import { objects, objectsIn, collectionOf } from '../../data/collections';
 
 export function getStaticPaths() {
-  return objects.map((o) => ({ params: { id: o.id }, props: { o } }));
+  return objects.map((o) => ({ params: { slug: o.slug }, props: { o } }));
 }
 const { o } = Astro.props;
 const c = collectionOf(o);
+const siblings = objectsIn(c.slug);
+const i = siblings.indexOf(o);
+const next = siblings[(i + 1) % siblings.length];
 ---
-<Base title={`${o.title} — Obj. ${o.id}`}>
+<Base title={o.title}>
   <section class="s s--light obj">
-    <Plate src={o.image} alt={o.title} label={`Obj. ${o.id} — image to follow`} class="obj__plate" />
+    <div class="obj__images">
+      <Plate src={o.image} fit={o.fit} alt={o.title} eager sizes="(max-width: 800px) 100vw, 58vw" />
+      {o.views.map((v, n) => (
+        <Plate src={v.image} fit={v.fit} alt={`${o.title}, view ${n + 2}`} sizes="(max-width: 800px) 100vw, 58vw" />
+      ))}
+    </div>
     <div class="obj__card">
       <p class="note muted"><a class="link" href={`/collections/${c.slug}`}>{c.number} — {c.title}</a></p>
       <h1 class="h2">{o.title}</h1>
       <dl class="cat">
         <dt class="note muted">Obj.</dt><dd>{o.id}</dd>
         <dt class="note muted">Materials</dt><dd>{o.materials}</dd>
-        <dt class="note muted">Year</dt><dd>{o.year}</dd>
+        {o.year && <><dt class="note muted">Year</dt><dd>{o.year}</dd></>}
         {o.dimensions && <><dt class="note muted">Dimensions</dt><dd>{o.dimensions}</dd></>}
         <dt class="note muted">Edition</dt><dd>Unique</dd>
       </dl>
       {o.note && <p class="body-text">{o.note}</p>}
       <p class="note">Price on request</p>
-      <a class="enq note" href={`/enquire?object=${o.id}`}>Enquire about this object</a>
+      <a class="enq note" href={`/enquire?object=${encodeURIComponent(`Obj. ${o.id} — ${o.title}`)}`}>Enquire about this object</a>
+      {next !== o && <a class="note muted nxt" href={`/objects/${next.slug}`}>Next — {next.title} →</a>}
     </div>
   </section>
 </Base>
 <style>
   .obj { padding-top: 8rem; display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(2rem, 6vw, 7rem); align-items: start; }
+  .obj__images { display: grid; gap: clamp(1rem, 3vw, 2.5rem); }
+  .obj__images :global(.plate) { background: #ebe7e0; }
   .obj__card { position: sticky; top: 8rem; display: grid; gap: 1.5rem; }
   .obj__card p { margin: 0; }
   .cat { display: grid; grid-template-columns: 8rem 1fr; gap: 0.6rem 1rem; margin: 0; border-top: 1px solid rgba(14,13,12,.15); padding-top: 1.25rem; }
   .cat dd { margin: 0; }
   .enq { justify-self: start; border: 1px solid var(--black); padding: 1rem 1.6rem; transition: background 0.5s var(--ease), color 0.5s var(--ease); }
   .enq:hover { background: var(--black); color: var(--offwhite); }
+  .nxt { justify-self: start; margin-top: 2rem; }
   @media (max-width: 800px) { .obj { grid-template-columns: 1fr; } .obj__card { position: static; } }
 </style>

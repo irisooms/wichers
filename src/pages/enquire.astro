@@ -25,7 +25,7 @@ import { site } from '../data/site';
   // Prototype: hand the enquiry to the mail client. Swap for a form endpoint later.
   const form = document.getElementById('enq') as HTMLFormElement;
   const obj = new URLSearchParams(location.search).get('object');
-  if (obj) (document.getElementById('obj') as HTMLInputElement).value = `Obj. ${obj}`;
+  if (obj) (document.getElementById("obj") as HTMLInputElement).value = obj;
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = new FormData(form);

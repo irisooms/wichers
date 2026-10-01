@@ -1,15 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
 import Plate from '../components/Plate.astro';
-import { collections } from '../data/collections';
+import { collections, coverOf, objectBySlug } from '../data/collections';
+
+const hero = objectBySlug('vanitas-bird-on-egg')!;
+const core = objectBySlug('icon-pearl-necklace')!;
+const selected = ['medusa', 'face-i', 'lips-i', 'blue-leaf'].map((s) => objectBySlug(s)!);
 ---
 <Base dark>
   <!-- 1. Dark: gallery opening -->
   <section class="s s--dark open">
-    <Plate alt="WICHERS object in hard light" label="Hero — one object, hard light" ratio="16 / 10" class="open__plate" />
+    <a href={`/objects/${hero.slug}`} class="open__vitrine">
+      <Plate src={hero.image} alt={hero.title} ratio="4 / 5" eager sizes="(max-width: 800px) 90vw, 40vw" />
+    </a>
     <div class="open__foot">
       <h1 class="note">WICHERS — Wearable Sculptures</h1>
-      <p class="note muted">Ceramic · Bronze · Nature imprints</p>
+      <p class="note muted">{hero.title}</p>
     </div>
   </section>
 
@@ -30,7 +36,10 @@ import { collections } from '../data/collections';
       </p>
       <p class="h2">Not perfection. Presence.</p>
     </div>
-    <Plate alt="Sketchbook page from the studio archive" label="Archive — sketchbook page" ratio="3 / 4" class="core__plate reveal" />
+    <a href={`/objects/${core.slug}`} class="core__plate reveal">
+      <Plate src={core.views[0]?.image ?? core.image} alt={`${core.title}, detail`} ratio="3 / 4" fit="cover" sizes="(max-width: 800px) 90vw, 30vw" />
+      <p class="note muted">{core.title} — detail</p>
+    </a>
   </section>
 
   <!-- 4. Dark: the collections as exhibition rooms -->
@@ -43,6 +52,7 @@ import { collections } from '../data/collections';
       {collections.map((c) => (
         <li class="reveal">
           <a href={`/collections/${c.slug}`} class="room">
+            <Plate src={coverOf(c)} alt={c.title} ratio="1 / 1" widths={[240, 480]} sizes="8rem" class="room__thumb" />
             <span class="note muted">{c.number}</span>
             <span class="h2 room__title">{c.title}</span>
             <span class="room__line muted">{c.line}</span>
@@ -52,18 +62,19 @@ import { collections } from '../data/collections';
     </ol>
   </section>
 
-  <!-- 5. Paper: archive strip -->
+  <!-- 5. Paper: selected wearable objects -->
   <section class="s s--paper">
-    <p class="note muted">From the archive</p>
+    <p class="note muted">Wearable — selected</p>
     <div class="strip">
-      <Plate alt="Leaf imprint" label="Leaf imprint" ratio="3 / 4" class="reveal" />
-      <Plate alt="Magazine cutting" label="Magazine cutting" ratio="1 / 1" class="reveal" />
-      <Plate alt="Ceramic fracture, detail" label="Ceramic detail" ratio="4 / 5" class="reveal" />
-      <Plate alt="Bronze test piece" label="Bronze test piece" ratio="3 / 4" class="reveal" />
+      {selected.map((o) => (
+        <a href={`/objects/${o.slug}`} class="reveal">
+          <Plate src={o.image} alt={o.title} ratio="3 / 4" fit="cover" sizes="(max-width: 800px) 50vw, 25vw" />
+          <p class="note muted">{o.title}</p>
+        </a>
+      ))}
     </div>
-    <a class="note link" href="/archive">Enter the archive</a>
+    <a class="note link" href="/collections">All collections</a>
   </section>
-
   <!-- 6. Dark: close -->
   <section class="s s--dark close">
     <p class="statement reveal">Objects made<br />to remain.</p>
@@ -73,26 +84,30 @@ import { collections } from '../data/collections';
 
 <style>
   .open { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; gap: 1.5rem; padding-top: 6rem; padding-bottom: 2rem; }
-  .open__plate { flex: 1; aspect-ratio: auto !important; min-height: 60svh; }
+  .open__vitrine { align-self: center; width: min(100%, 30rem, 56svh); }
   .open__foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   .open__foot h1 { margin: 0; font-weight: 400; }
   .open__foot p { margin: 0; }
 
   .core { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 8vw, 9rem); align-items: end; }
-  .core__plate { max-width: 26rem; justify-self: end; width: 100%; transform: rotate(-1.2deg); }
+  .core__plate { max-width: 26rem; justify-self: end; width: 100%; }
+  .core__plate p { margin: 0.75rem 0 0; }
   @media (max-width: 800px) { .core { grid-template-columns: 1fr; } .core__plate { justify-self: start; } }
 
   .rooms__head { display: flex; justify-content: space-between; margin-bottom: 3rem; }
   .rooms { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(242,239,233,.15); }
   .rooms li { border-bottom: 1px solid rgba(242,239,233,.15); }
-  .room { display: grid; grid-template-columns: 4rem 1fr 1fr; gap: 1.5rem; align-items: baseline; padding: 2rem 0; transition: padding 0.6s var(--ease); }
+  .room { display: grid; grid-template-columns: 6rem 3rem 1fr 1fr; gap: 1.5rem; align-items: baseline; padding: 2rem 0; transition: padding 0.6s var(--ease); }
   .room:hover { padding-left: 1rem; }
   .room__line { font-size: 0.95rem; max-width: 28rem; }
-  @media (max-width: 800px) { .room { grid-template-columns: 2.5rem 1fr; } .room__line { grid-column: 2; } }
+  .room { align-items: center; }
+  .room__thumb { width: 6rem; }
+  @media (max-width: 800px) { .room { grid-template-columns: 4.5rem 1fr; } .room > .note { display: none; } .room__thumb { width: 4.5rem; } .room__line { grid-column: 2; } }
 
   .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 3vw, 2.5rem); align-items: end; margin: 2rem 0 3rem; }
   .strip > :nth-child(2) { margin-bottom: 4rem; }
   .strip > :nth-child(4) { margin-bottom: 2rem; }
+  .strip p { margin: 0.75rem 0 0; }
   @media (max-width: 800px) { .strip { grid-template-columns: repeat(2, 1fr); } }
 
   .close { display: grid; gap: 3rem; }

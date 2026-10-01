@@ -19,10 +19,10 @@ const next = collections[(i + 1) % collections.length];
   </section>
   <section class="s s--dark objs">
     {items.map((o) => (
-      <a href={`/objects/${o.id}`} class="obj reveal">
-        <Plate src={o.image} alt={o.title} label={`Obj. ${o.id}`} />
+      <a href={`/objects/${o.slug}`} class="obj reveal">
+        <Plate src={o.image} fit={o.fit} alt={o.title} sizes="(max-width: 520px) 100vw, (max-width: 800px) 50vw, 33vw" />
         <p class="note"><span class="muted">Obj. {o.id}</span> — {o.title}</p>
-        <p class="note muted">{o.materials} · {o.year}</p>
+        <p class="note muted">{o.materials}</p>
       </a>
     ))}
   </section>
