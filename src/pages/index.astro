@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import Plate from '../components/Plate.astro';
+import { collections } from '../data/collections';
+---
+<Base dark>
+  <!-- 1. Dark: gallery opening -->
+  <section class="s s--dark open">
+    <Plate alt="WICHERS object in hard light" label="Hero — one object, hard light" ratio="16 / 10" class="open__plate" />
+    <div class="open__foot">
+      <h1 class="note">WICHERS — Wearable Sculptures</h1>
+      <p class="note muted">Ceramic · Bronze · Nature imprints</p>
+    </div>
+  </section>
+
+  <!-- 2. Light: statement -->
+  <section class="s s--light">
+    <p class="statement reveal">Not jewellery.<br />Objects.</p>
+  </section>
+
+  <!-- 3. Paper: core text beside an archive fragment -->
+  <section class="s s--paper core">
+    <div class="core__text reveal">
+      <p class="note muted">Statement</p>
+      <p class="body-text">
+        WICHERS creates wearable sculptures exploring the fragile relationship between beauty
+        and imperfection. Inspired by nature, the human body and the traces left by time, each
+        piece is handcrafted in ceramic and bronze. Every crack, texture and irregularity becomes
+        part of the story.
+      </p>
+      <p class="h2">Not perfection. Presence.</p>
+    </div>
+    <Plate alt="Sketchbook page from the studio archive" label="Archive — sketchbook page" ratio="3 / 4" class="core__plate reveal" />
+  </section>
+
+  <!-- 4. Dark: the collections as exhibition rooms -->
+  <section class="s s--dark">
+    <div class="rooms__head">
+      <p class="note muted">Collections</p>
+      <a class="note link" href="/collections">All six</a>
+    </div>
+    <ol class="rooms">
+      {collections.map((c) => (
+        <li class="reveal">
+          <a href={`/collections/${c.slug}`} class="room">
+            <span class="note muted">{c.number}</span>
+            <span class="h2 room__title">{c.title}</span>
+            <span class="room__line muted">{c.line}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- 5. Paper: archive strip -->
+  <section class="s s--paper">
+    <p class="note muted">From the archive</p>
+    <div class="strip">
+      <Plate alt="Leaf imprint" label="Leaf imprint" ratio="3 / 4" class="reveal" />
+      <Plate alt="Magazine cutting" label="Magazine cutting" ratio="1 / 1" class="reveal" />
+      <Plate alt="Ceramic fracture, detail" label="Ceramic detail" ratio="4 / 5" class="reveal" />
+      <Plate alt="Bronze test piece" label="Bronze test piece" ratio="3 / 4" class="reveal" />
+    </div>
+    <a class="note link" href="/archive">Enter the archive</a>
+  </section>
+
+  <!-- 6. Dark: close -->
+  <section class="s s--dark close">
+    <p class="statement reveal">Objects made<br />to remain.</p>
+    <p class="note muted">Each piece is unique. Price on request. <a class="link" href="/enquire">Enquire</a></p>
+  </section>
+</Base>
+
+<style>
+  .open { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; gap: 1.5rem; padding-top: 6rem; padding-bottom: 2rem; }
+  .open__plate { flex: 1; aspect-ratio: auto !important; min-height: 60svh; }
+  .open__foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .open__foot h1 { margin: 0; font-weight: 400; }
+  .open__foot p { margin: 0; }
+
+  .core { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 8vw, 9rem); align-items: end; }
+  .core__plate { max-width: 26rem; justify-self: end; width: 100%; transform: rotate(-1.2deg); }
+  @media (max-width: 800px) { .core { grid-template-columns: 1fr; } .core__plate { justify-self: start; } }
+
+  .rooms__head { display: flex; justify-content: space-between; margin-bottom: 3rem; }
+  .rooms { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(242,239,233,.15); }
+  .rooms li { border-bottom: 1px solid rgba(242,239,233,.15); }
+  .room { display: grid; grid-template-columns: 4rem 1fr 1fr; gap: 1.5rem; align-items: baseline; padding: 2rem 0; transition: padding 0.6s var(--ease); }
+  .room:hover { padding-left: 1rem; }
+  .room__line { font-size: 0.95rem; max-width: 28rem; }
+  @media (max-width: 800px) { .room { grid-template-columns: 2.5rem 1fr; } .room__line { grid-column: 2; } }
+
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 3vw, 2.5rem); align-items: end; margin: 2rem 0 3rem; }
+  .strip > :nth-child(2) { margin-bottom: 4rem; }
+  .strip > :nth-child(4) { margin-bottom: 2rem; }
+  @media (max-width: 800px) { .strip { grid-template-columns: repeat(2, 1fr); } }
+
+  .close { display: grid; gap: 3rem; }
+</style>

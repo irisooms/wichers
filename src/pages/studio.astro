@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import Plate from '../components/Plate.astro';
+import { site } from '../data/site';
+---
+<Base title="Studio">
+  <section class="s s--light head">
+    <p class="note muted">{site.studio}</p>
+    <h1 class="statement">Beauty is never<br />perfect.</h1>
+  </section>
+  <section class="s s--light two">
+    <Plate alt="Marsha Wichers in the studio" label="Portrait — studio" />
+    <div class="txt reveal">
+      <p class="body-text">
+        WICHERS is an artist's practice for wearable sculpture, where body, nature and
+        transience meet. Each object is a small personal monument: made to be worn,
+        conceived as an autonomous work of art.
+      </p>
+      <p class="body-text muted">
+        Ceramic is shaped by hand; cracks and veins remain visible. Bronze is cast — raw,
+        patinated or mirror-polished — a material that changes with touch and time. Leaves,
+        bark, roots, shells, seeds and stones are not copied but preserved.
+      </p>
+      <!-- TODO: biography, exhibitions, press — to be supplied -->
+    </div>
+  </section>
+  <section class="s s--dark mats">
+    {[
+      ['Ceramic', 'Hand-formed. Imperfections, cracks and veins stay visible.'],
+      ['Bronze', 'Cast, raw, patinated or polished. Changed by touch and time.'],
+      ['Imprints', 'Leaves, bark, roots, shells, seeds and stones — preserved, not copied.'],
+    ].map(([t, d]) => (
+      <div class="reveal"><p class="h2">{t}</p><p class="muted">{d}</p></div>
+    ))}
+  </section>
+</Base>
+<style>
+  .head { padding-top: 10rem; display: grid; gap: 2rem; }
+  .two { padding-top: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 7vw, 8rem); align-items: end; }
+  .txt { display: grid; gap: 1rem; }
+  .txt p { margin: 0; }
+  .mats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+  @media (max-width: 800px) { .two, .mats { grid-template-columns: 1fr; } }
+</style>

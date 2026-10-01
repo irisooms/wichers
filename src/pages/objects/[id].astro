@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import Plate from '../../components/Plate.astro';
+import { objects, collectionOf } from '../../data/collections';
+
+export function getStaticPaths() {
+  return objects.map((o) => ({ params: { id: o.id }, props: { o } }));
+}
+const { o } = Astro.props;
+const c = collectionOf(o);
+---
+<Base title={`${o.title} — Obj. ${o.id}`}>
+  <section class="s s--light obj">
+    <Plate src={o.image} alt={o.title} label={`Obj. ${o.id} — image to follow`} class="obj__plate" />
+    <div class="obj__card">
+      <p class="note muted"><a class="link" href={`/collections/${c.slug}`}>{c.number} — {c.title}</a></p>
+      <h1 class="h2">{o.title}</h1>
+      <dl class="cat">
+        <dt class="note muted">Obj.</dt><dd>{o.id}</dd>
+        <dt class="note muted">Materials</dt><dd>{o.materials}</dd>
+        <dt class="note muted">Year</dt><dd>{o.year}</dd>
+        {o.dimensions && <><dt class="note muted">Dimensions</dt><dd>{o.dimensions}</dd></>}
+        <dt class="note muted">Edition</dt><dd>Unique</dd>
+      </dl>
+      {o.note && <p class="body-text">{o.note}</p>}
+      <p class="note">Price on request</p>
+      <a class="enq note" href={`/enquire?object=${o.id}`}>Enquire about this object</a>
+    </div>
+  </section>
+</Base>
+<style>
+  .obj { padding-top: 8rem; display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(2rem, 6vw, 7rem); align-items: start; }
+  .obj__card { position: sticky; top: 8rem; display: grid; gap: 1.5rem; }
+  .obj__card p { margin: 0; }
+  .cat { display: grid; grid-template-columns: 8rem 1fr; gap: 0.6rem 1rem; margin: 0; border-top: 1px solid rgba(14,13,12,.15); padding-top: 1.25rem; }
+  .cat dd { margin: 0; }
+  .enq { justify-self: start; border: 1px solid var(--black); padding: 1rem 1.6rem; transition: background 0.5s var(--ease), color 0.5s var(--ease); }
+  .enq:hover { background: var(--black); color: var(--offwhite); }
+  @media (max-width: 800px) { .obj { grid-template-columns: 1fr; } .obj__card { position: static; } }
+</style>

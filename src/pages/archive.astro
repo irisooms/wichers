@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Plate from '../components/Plate.astro';
+
+// Real fragments from the working process only — no decorative effects.
+const fragments = [
+  { label: 'Sketchbook page', ratio: '3 / 4', tilt: -1.5 },
+  { label: 'Leaf imprint in clay', ratio: '1 / 1', tilt: 1 },
+  { label: 'Handwritten line', ratio: '4 / 3', tilt: 0 },
+  { label: 'Magazine cutting', ratio: '3 / 4', tilt: 2 },
+  { label: 'Bronze test piece', ratio: '4 / 5', tilt: -0.5 },
+  { label: 'Ceramic fracture', ratio: '1 / 1', tilt: 1.5 },
+  { label: 'Bark imprint', ratio: '3 / 4', tilt: -2 },
+  { label: 'Material study', ratio: '4 / 3', tilt: 0.5 },
+];
+---
+<Base title="Archive">
+  <section class="s s--paper head">
+    <p class="note muted">Archive</p>
+    <h1 class="statement">Nature leaves<br />a mark.</h1>
+    <p class="body-text muted">Sketches, cuttings, imprints and material studies from the studio. The working process, kept.</p>
+  </section>
+  <section class="s s--paper board">
+    {fragments.map((f, i) => (
+      <figure class="frag reveal" style={`--tilt:${f.tilt}deg`}>
+        <Plate alt={f.label} label={f.label} ratio={f.ratio} />
+        <figcaption class="note muted">A.{String(i + 1).padStart(3, '0')} — {f.label}</figcaption>
+      </figure>
+    ))}
+  </section>
+</Base>
+<style>
+  .head { padding-top: 10rem; display: grid; gap: 2rem; }
+  .board { padding-top: 0; columns: 3 16rem; column-gap: clamp(1.5rem, 4vw, 4rem); }
+  .frag { break-inside: avoid; margin: 0 0 clamp(2rem, 6vw, 5rem); transform: rotate(var(--tilt)); }
+  .frag figcaption { margin-top: 0.75rem; }
+</style>

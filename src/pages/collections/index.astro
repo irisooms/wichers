@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import Plate from '../../components/Plate.astro';
+import { collections } from '../../data/collections';
+---
+<Base title="Collections">
+  <section class="s s--light">
+    <p class="note muted">Collections · I — VI</p>
+    <h1 class="statement">Small<br />Monuments.</h1>
+  </section>
+  <section class="s s--light grid">
+    {collections.map((c, i) => (
+      <a href={`/collections/${c.slug}`} class:list={['card reveal', { 'card--offset': i % 2 }]}>
+        <Plate src={c.image} alt={c.title} label={`${c.title} — image to follow`} />
+        <div class="card__meta">
+          <span class="note muted">{c.number}</span>
+          <span class="h2">{c.title}</span>
+        </div>
+        <p class="muted card__line">{c.line}</p>
+      </a>
+    ))}
+  </section>
+</Base>
+<style>
+  .grid { padding-top: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(2rem, 7vw, 8rem); }
+  .card--offset { margin-top: 8rem; }
+  .card__meta { display: flex; gap: 1rem; align-items: baseline; margin-top: 1.25rem; }
+  .card__line { max-width: 26rem; margin: 0.5rem 0 0; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .card--offset { margin-top: 0; } }
+</style>

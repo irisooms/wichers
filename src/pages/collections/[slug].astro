@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import Plate from '../../components/Plate.astro';
+import { collections, objectsIn } from '../../data/collections';
+
+export function getStaticPaths() {
+  return collections.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+const items = objectsIn(c.slug);
+const i = collections.indexOf(c);
+const next = collections[(i + 1) % collections.length];
+---
+<Base title={c.title} description={c.line} dark>
+  <section class="s s--dark head">
+    <p class="note muted">Collection {c.number}</p>
+    <h1 class="statement">{c.title}</h1>
+    <p class="body-text muted">{c.line}</p>
+  </section>
+  <section class="s s--dark objs">
+    {items.map((o) => (
+      <a href={`/objects/${o.id}`} class="obj reveal">
+        <Plate src={o.image} alt={o.title} label={`Obj. ${o.id}`} />
+        <p class="note"><span class="muted">Obj. {o.id}</span> — {o.title}</p>
+        <p class="note muted">{o.materials} · {o.year}</p>
+      </a>
+    ))}
+  </section>
+  <section class="s s--light nxt">
+    <p class="note muted">Next collection</p>
+    <a href={`/collections/${next.slug}`} class="statement">{next.title} →</a>
+  </section>
+</Base>
+<style>
+  .head { padding-top: 10rem; display: grid; gap: 2rem; }
+  .objs { padding-top: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 4rem); }
+  .obj:nth-child(3n+2) { margin-top: 6rem; }
+  .obj p { margin: 0.75rem 0 0; }
+  .obj p + p { margin-top: 0.25rem; }
+  @media (max-width: 800px) { .objs { grid-template-columns: 1fr 1fr; } .obj:nth-child(3n+2) { margin-top: 0; } }
+  @media (max-width: 520px) { .objs { grid-template-columns: 1fr; } }
+  .nxt { display: grid; gap: 1.5rem; }
+</style>

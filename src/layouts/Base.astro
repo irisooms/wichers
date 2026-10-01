@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props { title?: string; description?: string; dark?: boolean; }
+const { title, description = 'WICHERS creates wearable sculptures in ceramic and bronze. Not perfection. Presence.', dark = false } = Astro.props;
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/collections', label: 'Collections' },
+  { href: '/archive', label: 'Archive' },
+  { href: '/studio', label: 'Studio' },
+  { href: '/enquire', label: 'Enquire' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0e0d0c" />
+  </head>
+  <body>
+    <header class:list={['hd', { 'hd--dark': dark }]}>
+      <a href="/" class="hd__mark" aria-label="WICHERS — home">{site.name}</a>
+      <nav class="hd__nav" aria-label="Main">
+        {nav.map((n) => (
+          <a href={n.href} class:list={['note', { 'is-active': path.startsWith(n.href) }]}>{n.label}</a>
+        ))}
+      </nav>
+    </header>
+
+    <main><slot /></main>
+
+    <footer class="ft s--dark">
+      <div class="ft__mark">{site.name}</div>
+      <div class="ft__cols">
+        <p class="note muted">{site.studio}</p>
+        <p class="note muted">Wearable Sculptures — ceramic &amp; bronze</p>
+        <p class="note muted">Viewing by appointment · Price on request</p>
+        <p class="note"><a class="link" href="/enquire">Enquire</a></p>
+      </div>
+    </footer>
+
+    <script>
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
+
+<style>
+  .hd {
+    position: fixed; inset: 0 0 auto 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 1.4rem var(--gutter);
+    mix-blend-mode: difference; color: var(--offwhite);
+  }
+  .hd__mark { font-size: 0.95rem; letter-spacing: 0.42em; font-weight: 400; }
+  .hd__nav { display: flex; gap: clamp(1rem, 3vw, 2.5rem); }
+  .hd__nav a { opacity: 0.7; transition: opacity 0.4s var(--ease); }
+  .hd__nav a:hover, .hd__nav a.is-active { opacity: 1; }
+  @media (max-width: 640px) {
+    .hd { flex-direction: column; gap: 0.6rem; }
+    .hd__nav { gap: 1rem; }
+  }
+  .ft { padding: 6rem var(--gutter) 2.5rem; }
+  .ft__mark { font-size: clamp(3rem, 16vw, 15rem); letter-spacing: 0.08em; font-weight: 250; line-height: 1; }
+  .ft__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin-top: 3rem; border-top: 1px solid rgba(242,239,233,.15); padding-top: 1.5rem; }
+  .ft__cols p { margin: 0; }
+</style>
