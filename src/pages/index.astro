@@ -1,26 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
 import Plate from '../components/Plate.astro';
-import { Image } from 'astro:assets';
-import sketchbook from '../assets/archive/sketchbook-sphynx.jpg';
 import { collections, coverOf, objectBySlug } from '../data/collections';
 
 const core = objectBySlug('icon-pearl-necklace')!;
 const selected = ['medusa', 'face-i', 'lips-i', 'blue-leaf'].map((s) => objectBySlug(s)!);
 ---
 <Base dark>
-  <!-- 1. Dark: gallery opening — temporarily a page from Marsha's sketchbook -->
+  <!-- 1. Dark: gallery opening — studio film loop (temporary) -->
   <section class="s--dark open">
     <div class="open__text">
       <h1 class="statement">Wearable<br />Sculptures.</h1>
       <div class="open__foot">
         <p class="note">WICHERS — Studio Marsha Wichers</p>
-        <p class="note muted">From the sketchbook — sphynx, collar study</p>
+        <p class="note muted">From the studio — sketches, imprints, work in progress</p>
       </div>
     </div>
     <figure class="open__image">
-      <Image src={sketchbook} alt="Sketchbook page: line drawing of a sphynx cat wearing a collar, above a black-and-white photograph of a sphynx cat"
-        widths={[600, 900, 1200]} sizes="(max-width: 800px) 100vw, 56vw" loading="eager" fetchpriority="high" quality={85} />
+      <video id="open-film" autoplay muted loop playsinline preload="auto" poster="/video/studio-loop-poster.jpg"
+        aria-label="Black-and-white film from the studio: sketches, cuttings, leaf imprints, Marsha Wichers drawing, and ceramic work">
+        <source src="/video/studio-loop.webm" type="video/webm" />
+        <source src="/video/studio-loop.mp4" type="video/mp4" />
+      </video>
+      <button class="open__toggle note" type="button" aria-controls="open-film" aria-pressed="false">Pause</button>
     </figure>
   </section>
 
@@ -87,6 +89,23 @@ const selected = ['medusa', 'face-i', 'lips-i', 'blue-leaf'].map((s) => objectBy
   </section>
 </Base>
 
+<script>
+  const film = document.getElementById('open-film') as HTMLVideoElement | null;
+  const toggle = document.querySelector<HTMLButtonElement>('.open__toggle');
+  if (film && toggle) {
+    const sync = () => {
+      toggle.textContent = film.paused ? 'Play' : 'Pause';
+      toggle.setAttribute('aria-pressed', String(film.paused));
+    };
+    // Respect reduced motion: show the still frame until the visitor chooses to play.
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) film.pause();
+    toggle.addEventListener('click', () => (film.paused ? film.play() : film.pause()));
+    film.addEventListener('play', sync);
+    film.addEventListener('pause', sync);
+    sync();
+  }
+</script>
+
 <style>
   .open { min-height: 100svh; display: grid; grid-template-columns: 44fr 56fr; }
   .open__text { display: flex; flex-direction: column; justify-content: flex-end; gap: 3rem; padding: 7rem var(--gutter) 2rem; }
@@ -94,7 +113,14 @@ const selected = ['medusa', 'face-i', 'lips-i', 'blue-leaf'].map((s) => objectBy
   .open__foot { display: grid; gap: 0.4rem; }
   .open__foot p { margin: 0; }
   .open__image { margin: 0; position: relative; min-height: 100svh; overflow: hidden; }
-  .open__image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
+  .open__image video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .open__toggle {
+    position: absolute; right: var(--gutter); bottom: 1.5rem;
+    background: none; border: 0; padding: 0.4rem 0; cursor: pointer;
+    font-family: inherit; color: var(--offwhite); opacity: 0.6;
+    border-bottom: 1px solid currentColor; transition: opacity 0.4s var(--ease);
+  }
+  .open__toggle:hover, .open__toggle:focus-visible { opacity: 1; }
   @media (max-width: 800px) {
     .open { grid-template-columns: 1fr; }
     .open__image { order: -1; min-height: 0; aspect-ratio: 3 / 4; }
