@@ -23,7 +23,6 @@ const selected = ['medusa', 'face-i', 'lips-i', 'blue-leaf'].map((s) => objectBy
         <source src="/video/studio-loop.mp4" type="video/mp4" />
       </video>
       <div class="open__grain" aria-hidden="true"></div>
-      <button class="open__toggle note" type="button" aria-controls="open-film" aria-pressed="false">Pause</button>
     </figure>
   </section>
 
@@ -91,20 +90,9 @@ const selected = ['medusa', 'face-i', 'lips-i', 'blue-leaf'].map((s) => objectBy
 </Base>
 
 <script>
+  // Respect reduced motion: show the still frame instead of the moving film.
   const film = document.getElementById('open-film') as HTMLVideoElement | null;
-  const toggle = document.querySelector<HTMLButtonElement>('.open__toggle');
-  if (film && toggle) {
-    const sync = () => {
-      toggle.textContent = film.paused ? 'Play' : 'Pause';
-      toggle.setAttribute('aria-pressed', String(film.paused));
-    };
-    // Respect reduced motion: show the still frame until the visitor chooses to play.
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) film.pause();
-    toggle.addEventListener('click', () => (film.paused ? film.play() : film.pause()));
-    film.addEventListener('play', sync);
-    film.addEventListener('pause', sync);
-    sync();
-  }
+  if (film && matchMedia('(prefers-reduced-motion: reduce)').matches) film.pause();
 </script>
 
 <style>
@@ -136,13 +124,6 @@ const selected = ['medusa', 'face-i', 'lips-i', 'blue-leaf'].map((s) => objectBy
     100% { transform: translate(0, 0); }
   }
   @media (prefers-reduced-motion: reduce) { .open__grain { animation: none; } }
-  .open__toggle {
-    position: absolute; right: var(--gutter); bottom: 1.5rem; z-index: 1;
-    background: none; border: 0; padding: 0.4rem 0; cursor: pointer;
-    font-family: inherit; color: var(--offwhite); opacity: 0.6;
-    border-bottom: 1px solid currentColor; transition: opacity 0.4s var(--ease);
-  }
-  .open__toggle:hover, .open__toggle:focus-visible { opacity: 1; }
   @media (max-width: 800px) {
     .open { grid-template-columns: 1fr; }
     .open__image { order: -1; min-height: 0; aspect-ratio: 3 / 4; }
